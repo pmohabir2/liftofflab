@@ -4,17 +4,34 @@ body {
 }
 
 canvas {
-	margin: 10px auto;
 	display: block;
+	margin: 10px auto;
+}
+
+a {
+	text-decoration: none;
 }
 
 a:hover {
 	color: red;
 }
 
+.button {
+	border: 1px solid black;
+	display: inline-block;
+	margin-bottom: 20px;
+	padding: 5px;
+}
+
+.button:hover {
+	border: 1px solid red;
+	color: red;
+	cursor: pointer;
+}
+
 #info {
 	color: black;
-	margin: 50px auto;
-	width: 125px;
+	margin: 10px auto;
+	width: 275px;
 }
 
