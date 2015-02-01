@@ -1,20 +1,38 @@
-function main(){
-	document.onkeydown = process_key_down;
-	document.onkeyup = process_key_up;
-	generateMap();
+function play(){
 	game = setInterval(function(){
 		draw();
 		update();
 	}, 30);
-	intro = setInterval(function(){
+}
+
+function clear(){
+	if(game != null)
+		window.clearInterval(game);
+	if(animation != null)
+		window.clearInterval(animation);
+}
+
+function main(){
+	document.onkeydown = process_key_down;
+	document.onkeyup = process_key_up;
+	generateMap();
+	play();
+	document.getElementById("play").onclick = function(){
+		clear();
+		play();
+	};
+	document.getElementById("generate").onclick = function(){
+		clear();
+		player.x = 0;
+		player.y = 0;
 		generateMap();
-	}, 60);
+		play();
+	};
 }
 
 function draw(){
 	ctx.clearRect(0, 0, WIDTH, HEIGHT);
-	ctx.fillStyle = "#FFFFFF";
-			ctx.fillStyle = "#000000";
+	ctx.fillStyle = "#000000";
 	ctx.fillRect(player.x, player.y, player.size, player.size);
 	for(var i = 0; i < rows; i++){
 		for(var j = 0; j < cols; j++){
@@ -45,7 +63,6 @@ function process_key_down(e){
 		player.velX = player.speed;
 	else if(e.keyCode == '65')
 		player.velX = -player.speed;
-	window.clearInterval(intro);
 }
 
 function process_key_up(e){

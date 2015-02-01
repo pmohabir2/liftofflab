@@ -17,4 +17,4 @@ var cols = Math.floor(WIDTH/floorSize);
 var map = new Array(rows);
 var exit = null;
 var game = null;
-var intro = null;
+var animation = null;

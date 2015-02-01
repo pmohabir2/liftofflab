@@ -10,6 +10,7 @@ function Cell(){
 }
 
 function generateMap(){
+	path = [];
 	var unvisited = [];
 	initialize(unvisited);
 	var stack = [];
@@ -19,18 +20,20 @@ function generateMap(){
 	unvisited[current.row][current.col] = false;
 	var visited = 1;
 	while(visited <= size){
-		var neighbors = getNeighbors(current, unvisited);
-		if(neighbors.length > 0){
-			var next = neighbors[Math.floor(Math.random() * neighbors.length)];
-			clearWalls(current, next);
-			stack.push(current);
-			current = next;
-			unvisited[current.row][current.col] = false;
-			visited += 1;
-		} else{
-			stack.pop();
-			current = stack[stack.length-1];
-		}
+			var neighbors = getNeighbors(current, unvisited);
+			if(neighbors.length > 0){
+				var next = neighbors[Math.floor(Math.random() * neighbors.length)];
+				clearWalls(current, next);
+				stack.push(current);
+				path.push(current);
+				current = next;
+				unvisited[current.row][current.col] = false;
+				visited += 1;
+			} else{
+				stack.pop();
+				path.push(current);
+				current = stack[stack.length-1];
+			}
 	}
 }
 
@@ -84,3 +87,37 @@ function clearWalls(current, next){
 		current.e = 0;
 	}
 }
+
+function animate(){
+	var drew = [];
+	var cells = path;
+	var i = 0;
+	window.clearInterval(game);
+	if(animation != null)
+		window.clearInterval(animation);
+	ctx.clearRect(0, 0, WIDTH, HEIGHT);
+	animation = setInterval(function(){
+		current = cells[i];
+		i++;
+		if(drew.indexOf(current) == -1){
+			drew.push(current);
+			ctx.fillStyle = "#000000";
+		}
+		else{
+			ctx.fillStyle = "#DDDDDD";
+			ctx.fillRect(current.x, current.y, floorSize, floorSize);
+			ctx.fillStyle = "#000000";
+		}
+		if(current.n)
+			ctx.fillRect(current.x, current.y, floorSize, wallSize);
+		if(current.s)
+			ctx.fillRect(current.x, current.y + floorSize, floorSize, wallSize);
+		if(current.e)
+			ctx.fillRect(current.x + floorSize, current.y, wallSize, floorSize);
+		if(current.w)
+			ctx.fillRect(current.x, current.y, wallSize, floorSize);
+		if(i == cells.length - 1)
+			window.clearInterval(animation);
+	}, 1);
+}
+document.getElementById("animate").onclick = animate;
