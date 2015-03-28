@@ -10,6 +10,7 @@ function Cell(){
 }
 
 function generateMap(){
+	
 	path = [];
 	var unvisited = [];
 	initialize(unvisited);
