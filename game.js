@@ -64,7 +64,8 @@ function process_key_down(e){
 	else if(e.keyCode == '65')
 		player.velX = -player.speed;
 }
-
+$('#count').text(count);
+}
 function process_key_up(e){
 	e = e || window.event;
 	if(e.keyCode == '87' || e.keyCode == '83')
