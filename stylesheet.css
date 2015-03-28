@@ -1,19 +1,23 @@
 body {
 	background: white;
 	margin: 0;
+	
 }
 
 canvas {
 	display: block;
 	margin: 10px auto;
+
 }
 
 a {
 	text-decoration: none;
+	
 }
 
 a:hover {
 	color: red;
+
 }
 
 .button {
