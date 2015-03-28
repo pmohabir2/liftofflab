@@ -1,3 +1,4 @@
+
 var floorSize = 10;
 var wallSize = 1;
 var player = {
