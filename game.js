@@ -32,15 +32,15 @@ function main(){
 
 function draw(){
 	ctx.clearRect(0, 0, WIDTH, HEIGHT);
-	ctx.fillStyle = "#000000";
+	ctx.fillStyle = "#58FA58";
 	ctx.fillRect(player.x, player.y, player.size, player.size);
 	for(var i = 0; i < rows; i++){
 		for(var j = 0; j < cols; j++){
 			if(i == exit[0] && j == exit[1]){
-				ctx.fillStyle = "#FF0000";
+				ctx.fillStyle = "#58FA58";
 				ctx.fillRect(map[i][j].x, map[i][j].y, floorSize, floorSize);
 			}
-			ctx.fillStyle = "#000000";
+			ctx.fillStyle = "#58FA58";
 			if(map[i][j].n)
 				ctx.fillRect(map[i][j].x, map[i][j].y, floorSize, wallSize);
 			if(map[i][j].s)
